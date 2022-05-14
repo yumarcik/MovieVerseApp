@@ -19,13 +19,13 @@ protocol DetailViewControllerProtocol: AnyObject {
 
 class DetailViewController: UIViewController {
     
-    @IBOutlet weak var movieImg: UIImageView!
-    @IBOutlet weak var titleLbl: UILabel!
-    @IBOutlet weak var bodyLbl: UILabel!
-    @IBOutlet weak var imdbLinkImg: UIImageView!
-    @IBOutlet weak var releaseDateLbl: UILabel!
-    @IBOutlet weak var ratingLbl: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var movieImg: UIImageView!
+    @IBOutlet private weak var titleLbl: UILabel!
+    @IBOutlet private weak var bodyLbl: UILabel!
+    @IBOutlet private weak var imdbLinkImg: UIImageView!
+    @IBOutlet private weak var releaseDateLbl: UILabel!
+    @IBOutlet private weak var ratingLbl: UILabel!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     var presenter: DetailPresenterProtocol!
     var movieId: Int?
@@ -33,7 +33,6 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
-        
     }
 }
 
@@ -42,7 +41,6 @@ extension DetailViewController: DetailViewControllerProtocol {
     func reloadCollectionView() {
         collectionView.reloadData()
     }
-    
     
     func getMovieId() -> Int? {
         return movieId
@@ -62,7 +60,6 @@ extension DetailViewController: DetailViewControllerProtocol {
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "SimilarMovieCell", bundle: nil), forCellWithReuseIdentifier: "SimilarMovieCell")
     }
-    
     
 }
 

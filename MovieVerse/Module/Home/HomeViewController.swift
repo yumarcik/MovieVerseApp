@@ -14,6 +14,9 @@ protocol HomeViewControllerProtocol: AnyObject {
     func setupCollectionView()
     func reloadTableView()
     func reloadCollectionView()
+    func moveToDetail(movieId: Int)
+    func setupPageController(number: Int)
+    func setupNavigationBar()
 }
 
 class HomeViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate {
@@ -22,31 +25,25 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UISearchCon
         guard let text = searchController.searchBar.text else {
             return
         }
-        print(text)
+        searchResultVC.didUpdateText(text: text)
+
     }
     
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var pageControl: UIPageControl!
+    @IBOutlet private weak var tableView: UITableView!
     
     // Properties
     var presenter: HomePresenterProtocol!
-    private let searchController = UISearchController(searchResultsController: SearchResultViewController())
+    var searchView: SearchResultViewControllerProtocol!
+    var searchResultVC = SearchResultRouter.createModule()
+    private var searchController : UISearchController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
-        //self.navigationController?.navigationBar.isHidden = true
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = true
-        navigationItem.searchController = searchController
-        searchController.searchBar.placeholder = "Search"
-        searchController.hidesNavigationBarDuringPresentation = false
-
-//        self.navigationController?.navigationBar.prefersLargeTitles = false
-//        self.navigationController?.navigationItem.largeTitleDisplayMode = .always
     }
-    
+
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -59,9 +56,33 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UISearchCon
         collectionView.register(UINib(nibName: "SliderCell", bundle: nil), forCellWithReuseIdentifier: "SliderCell")
     }
     
-} 
+    func setupNavigationBar() {
+        searchResultVC.homeView = self
+        searchController = UISearchController(searchResultsController: searchResultVC)
+        searchController!.searchResultsUpdater = self
+        navigationItem.searchController = searchController
+        searchController!.searchBar.placeholder = "Search"
+        searchController!.hidesNavigationBarDuringPresentation = true
+        searchController!.definesPresentationContext = true
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.title = "Movies"
+        navigationController?.navigationBar.tintColor = UIColor.red
+        searchController?.automaticallyShowsScopeBar = false
+        searchController?.isActive = true
+        searchController?.searchBar.becomeFirstResponder()
+    }
+
+}
 
 extension HomeViewController: HomeViewControllerProtocol {
+    
+    func setupPageController(number: Int) {
+        pageControl.numberOfPages = number
+    }
+    
+    func moveToDetail(movieId: Int) {
+        presenter.moveToDetail(movieId: movieId)
+    }
     
     func reloadTableView() {
         tableView.reloadData()
@@ -74,7 +95,6 @@ extension HomeViewController: HomeViewControllerProtocol {
     func getMovieId() -> Int? {
         return 1
     }
-    
     
 }
 
@@ -95,7 +115,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.didSelectRowAt(index: indexPath.row)
+    }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
+
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -123,6 +150,14 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.didSelectItemAt(index: indexPath.row)
+    }
     
-    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        pageControl.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
+    }
 }
+
+

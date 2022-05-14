@@ -14,8 +14,8 @@ protocol SliderCellProtocol: AnyObject {
 
 class SliderCell: UICollectionViewCell {
     
-    @IBOutlet weak var sliderImg: UIImageView!
-    @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet private weak var sliderImg: UIImageView!
+    @IBOutlet private weak var nameLbl: UILabel!
     
     var cellPresenter: SliderCellPresenterProtocol! {
         didSet {
@@ -25,9 +25,7 @@ class SliderCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
-
 }
 
 extension SliderCell: SliderCellProtocol {

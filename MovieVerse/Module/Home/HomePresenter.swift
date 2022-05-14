@@ -11,12 +11,18 @@ protocol HomePresenterProtocol: AnyObject {
     func viewDidLoad()
     func numberOfItems() -> Int
     func didSelectRowAt(index: Int)
+    func moveToDetail(movieId: Int)
     func getNowPlayingMovie(_ index: Int) -> Movies?
     func getUpcomingMovie(_ index: Int) -> Movies?
     func numberOfItemsInSection() -> Int
+    func didSelectItemAt(index: Int)
 }
 
 final class HomePresenter: HomePresenterProtocol {
+    
+    func didSelectItemAt(index: Int) {
+        router.navigate(.detail(movieId: upcomingMovies[index].id!))
+    }
     
     func getUpcomingMovie(_ index: Int) -> Movies? {
         return upcomingMovies[safe: index]
@@ -30,9 +36,14 @@ final class HomePresenter: HomePresenterProtocol {
         return nowPlayingMovies[safe: index]
     }
     
+    func moveToDetail(movieId: Int) {
+        router.navigate(.detail(movieId: movieId))
+    }
+    
     func viewDidLoad() {
         view?.setupCollectionView()
         view?.setupTableView()
+        view?.setupNavigationBar()
         interactor.getUpcomingMovies()
         interactor.getNowPlayingMovies()
     }
@@ -42,7 +53,7 @@ final class HomePresenter: HomePresenterProtocol {
     }
     
     func didSelectRowAt(index: Int) {
-        print("yum")
+        router.navigate(.detail(movieId: nowPlayingMovies[index].id!))
     }
 
     unowned var view: HomeViewControllerProtocol?
@@ -80,11 +91,11 @@ extension HomePresenter: HomeInteractorOutputProtocol {
         case .success(let moviesResult):
             upcomingMovies = moviesResult.results ?? []
             view?.reloadCollectionView()
+            view?.setupPageController(number: upcomingMovies.count)
         case .failure(let error):
             print(error)
             
         }
     }
-    
-    
 }
+

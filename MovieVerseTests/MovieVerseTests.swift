@@ -10,27 +10,53 @@ import XCTest
 
 class MovieVerseTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var presenter: HomePresenter!
+    var view: MockHomeViewController!
+    var interactor: MockHomeInteractor!
+    var router: MockHomeRouter!
+    
+    override func setUp() {
+        super.setUp()
+        view = .init()
+        interactor = .init()
+        presenter = .init(view: view, router: router, interactor: interactor)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        view = nil
+        presenter = nil
+        interactor = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func test_viewWillAppear_InvokesRequiredViewMethods() {
+        XCTAssertFalse(view.didReloadCollectionView, "It's TRUE, it should be FALSE")
+        XCTAssertFalse(view.didReloadTableView, "It's TRUE, it should be FALSE")
+        XCTAssertFalse(view.didSetupCollectionView, "It's TRUE, it should be FALSE")
+        XCTAssertFalse(view.didSetupTableView, "It's TRUE, it should be FALSE")
+        presenter.viewDidLoad()
+        XCTAssertTrue(view.didReloadTableView, "It's FALSE, it should be TRUE")
+        XCTAssertTrue(view.didReloadCollectionView, "It's FALSE, it should be TRUE")
+        XCTAssertTrue(view.didSetupTableView, "It's FALSE, it should be TRUE")
+        XCTAssertTrue(view.didSetupCollectionView, "It's FALSE, it should be TRUE")
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func test_getMovie() {
+        XCTAssertNil(presenter.getUpcomingMovie(1)?.title, "Movie name is not empty")
+        XCTAssertNil(presenter.getNowPlayingMovie(1)?.title, "Movie name is not empty")
+        XCTAssertEqual(presenter.numberOfItems(), 0)
+        XCTAssertEqual(presenter.numberOfItemsInSection(), 0)
+        XCTAssertEqual(presenter.getUpcomingMovie(0)?.title, "Uncharted")
+        XCTAssertEqual(presenter.numberOfItems(), 0)
     }
+}
 
+extension MoviesResult {
+    static var response: MovieData {
+        let bundle = Bundle(for: MovieVerseTests.self)
+        let path = bundle.path(forResource: "Movie", ofType: "json")!
+        let file = try! String(contentsOfFile: path)
+        let data = file.data(using: .utf8)!
+        let movieResponse = try! JSONDecoder().decode(MovieData.self, from: data)
+        return movieResponse
+    }
 }

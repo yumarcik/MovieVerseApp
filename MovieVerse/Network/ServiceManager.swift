@@ -13,9 +13,11 @@ protocol MoviesServiceProtocol {
     func getUpcomingMovies(page: Int, completionHandler: @escaping (MoviesResult) -> ())
     func getDetails(movieId: Int, completionHandler: @escaping(MovieDetailsResult) -> ())
     func getSimilarMovies(movieId: Int, completionHandler: @escaping(SimilarMoviesResult) -> ())
+    func getSearchedMovies(searchedText: String, completionHandler: @escaping(MoviesResult) -> ())
 }
 
 struct MoviesService: MoviesServiceProtocol {
+
     // HomePage
     
     func getNowPlayingMovies(page: Int, completionHandler: @escaping (MoviesResult) -> ()) {
@@ -24,6 +26,12 @@ struct MoviesService: MoviesServiceProtocol {
     
     func getUpcomingMovies(page: Int, completionHandler: @escaping (MoviesResult) -> ()) {
         NetworkManager.shared.request(Router.upcomingMovies(page: page), decodeToType: MovieData.self, completionHandler: completionHandler)
+    }
+    
+    // Search
+    
+    func getSearchedMovies(searchedText: String, completionHandler: @escaping (MoviesResult) -> ()) {
+        NetworkManager.shared.request(Router.getSearchedMovies(searchedText: searchedText), decodeToType: MovieData.self, completionHandler: completionHandler)
     }
     
     // Details

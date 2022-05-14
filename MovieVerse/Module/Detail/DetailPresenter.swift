@@ -14,12 +14,6 @@ protocol DetailPresenterProtocol {
     func didSelectItemAt(row: Int)
 }
 
-//extension DetailPresenter {
-//    fileprivate enum Constants {
-//        static let firstPage: Int = 1
-//    }
-//}
-
 final class DetailPresenter: DetailPresenterProtocol {
     
     func didSelectItemAt(row: Int) {
@@ -70,7 +64,6 @@ extension DetailPresenter: DetailInteractorOutputProtocol {
             
         }
     }
-    
     
     func getMovieDetailSuccess(result: MovieDetailsResult) {
         

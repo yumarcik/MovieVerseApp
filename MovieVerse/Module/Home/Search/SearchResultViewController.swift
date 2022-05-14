@@ -7,30 +7,40 @@
 
 import UIKit
 
+protocol SearchResultViewControllerProtocol: AnyObject {
+    
+    func setupTableView()
+    func reloadTableView()
+    func didUpdateText(text: String)
+}
+
 class SearchResultViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     
+    var presenter: SearchResultPresenterProtocol!
+    var homeView: HomeViewControllerProtocol?
     let _rowHeight: CGFloat = 44
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(white:1, alpha: 0.5)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: "SearchCell", bundle: nil), forCellReuseIdentifier: "SearchCell")
-
+        presenter.viewDidLoad()
+    
     }
     
     override func viewDidLayoutSubviews() {
-        print("---------------")
-        print(tableView.rowHeight)
-        tableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: _rowHeight * 8 + 95)
+        tableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: getTableHeight() + _rowHeight)
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        tableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200)
-//    }
+    private func getTableHeight() -> CGFloat {
+        if presenter.numberOfItems() >= 8 {
+            return 8 * _rowHeight + 95
+        } else {
+            return CGFloat(presenter.numberOfItems()) * _rowHeight + 95
+        }
+    }
+    
  }
 
 extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource {
@@ -40,15 +50,48 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return presenter.numberOfItems()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
         
+        if let movie = presenter.getSearchResultMovie(index: indexPath.row) {
+            cell.cellPresenter = SearchCellPresenter(view: cell, searchedMovies: movie)
+        }
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let id = presenter.getSearchResultMovie(index: indexPath.row)?.id {
+            homeView?.moveToDetail(movieId: id)
+        }
+        
+    }
+    
+}
+
+extension SearchResultViewController: SearchResultViewControllerProtocol {
+    
+    func didUpdateText(text: String) {
+        presenter.getSearchResults(text)
+    }
+    
+    
+    func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "SearchCell", bundle: nil), forCellReuseIdentifier: "SearchCell")
+    }
+    
+    func reloadTableView() {
+        tableView.reloadData()
+        tableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: getTableHeight())
+        view.layoutIfNeeded()
     }
     
     
 }
+

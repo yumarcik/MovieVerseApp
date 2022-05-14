@@ -15,9 +15,9 @@ protocol MovieCellProtocol: AnyObject {
 
 class MovieCell: UITableViewCell {
 
-    @IBOutlet weak var movieImg: UIImageView!
-    @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var detailLbl: UILabel!
+    @IBOutlet private weak var movieImg: UIImageView!
+    @IBOutlet private weak var nameLbl: UILabel!
+    @IBOutlet private weak var detailLbl: UILabel!
     
     var cellPresenter: MovieCellPresenterProtocol! {
         didSet {
@@ -27,14 +27,11 @@ class MovieCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
-    
 }
 
 extension MovieCell: MovieCellProtocol {

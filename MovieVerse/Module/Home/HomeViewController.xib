@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="3vw-Ox-PPr">
-                    <rect key="frame" x="0.0" y="44" width="414" height="330"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="200"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="e7q-fM-KVS">
                         <size key="itemSize" width="128" height="128"/>
@@ -33,11 +33,11 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6jK-iZ-koq">
-                    <rect key="frame" x="0.0" y="374" width="414" height="488"/>
+                    <rect key="frame" x="0.0" y="244" width="414" height="618"/>
                     <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                 </tableView>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="4Um-5S-GI7">
-                    <rect key="frame" x="149" y="338" width="116" height="26"/>
+                    <rect key="frame" x="149" y="208" width="116" height="26"/>
                     <color key="pageIndicatorTintColor" red="0.99998670816421509" green="0.0033720450010150671" blue="0.028550559654831886" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </pageControl>
             </subviews>
@@ -51,7 +51,7 @@
                 <constraint firstItem="3vw-Ox-PPr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="bY6-Jr-PoX"/>
                 <constraint firstItem="6jK-iZ-koq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="c40-zX-yrW"/>
                 <constraint firstItem="6jK-iZ-koq" firstAttribute="top" secondItem="4Um-5S-GI7" secondAttribute="bottom" constant="10" id="eTq-bM-2vn"/>
-                <constraint firstItem="6jK-iZ-koq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="330" id="nxQ-Kj-Oe3"/>
+                <constraint firstItem="6jK-iZ-koq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="200" id="nxQ-Kj-Oe3"/>
                 <constraint firstItem="6jK-iZ-koq" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="szK-uD-ICT"/>
                 <constraint firstItem="3vw-Ox-PPr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xL3-8w-2NN"/>
             </constraints>

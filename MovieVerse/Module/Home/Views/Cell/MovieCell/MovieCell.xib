@@ -13,39 +13,40 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="139" id="KGk-i7-Jjw" customClass="MovieCell" customModule="MovieVerse" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="433" height="139"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="433" height="139"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="flk-Nu-dk0">
-                        <rect key="frame" x="10" y="22" width="95" height="95"/>
+                        <rect key="frame" x="10" y="10" width="95" height="95"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="95" id="Juh-m4-zqE"/>
                             <constraint firstAttribute="height" constant="95" id="e9W-DG-SSA"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Short Detail" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfI-Fe-7Ng">
-                        <rect key="frame" x="120" y="33.5" width="308" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Short Detail" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfI-Fe-7Ng">
+                        <rect key="frame" x="120" y="29" width="308" height="12"/>
+                        <fontDescription key="fontDescription" type="italicSystem" pointSize="10"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5x-L1-VXg">
-                        <rect key="frame" x="120" y="5" width="308" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <rect key="frame" x="120" y="10" width="308" height="16"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="O5x-L1-VXg" secondAttribute="trailing" constant="5" id="6RR-qH-Kar"/>
-                    <constraint firstItem="yfI-Fe-7Ng" firstAttribute="top" secondItem="O5x-L1-VXg" secondAttribute="bottom" constant="8" id="AwW-dI-SZW"/>
+                    <constraint firstItem="yfI-Fe-7Ng" firstAttribute="top" secondItem="O5x-L1-VXg" secondAttribute="bottom" constant="3" id="AwW-dI-SZW"/>
                     <constraint firstItem="flk-Nu-dk0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Efq-iu-U0C"/>
                     <constraint firstItem="yfI-Fe-7Ng" firstAttribute="leading" secondItem="flk-Nu-dk0" secondAttribute="trailing" constant="15" id="Gcw-8e-8o1"/>
                     <constraint firstAttribute="trailing" secondItem="yfI-Fe-7Ng" secondAttribute="trailing" constant="5" id="WSb-d3-Ozj"/>
                     <constraint firstItem="O5x-L1-VXg" firstAttribute="leading" secondItem="flk-Nu-dk0" secondAttribute="trailing" constant="15" id="Xsw-hR-oBV"/>
-                    <constraint firstItem="O5x-L1-VXg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="fhG-h1-MB1"/>
+                    <constraint firstItem="O5x-L1-VXg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="fhG-h1-MB1"/>
                     <constraint firstItem="flk-Nu-dk0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="r9V-6d-o5l"/>
+                    <constraint firstItem="flk-Nu-dk0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="sla-u6-C4d"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

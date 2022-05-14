@@ -12,7 +12,7 @@ protocol HomeRouterProtocol: AnyObject {
 }
 
 enum HomeRoutes {
-    //case detail(source: Source?)
+    case detail(movieId: Int)
 }
 
 final class HomeRouter {
@@ -34,12 +34,13 @@ final class HomeRouter {
 extension HomeRouter: HomeRouterProtocol {
     
     func navigate(_ route: HomeRoutes) {
-//        switch route {
-//        case .detail(let source):
-//            let detailVC = DetailRouter.createModule()
-//            detailVC.source = source
-//            viewController?.navigationController?.pushViewController(detailVC, animated: true)
-//        }
+        switch route {
+        case .detail(let movieId):
+            let detailVC = DetailRouter.createModule()
+            detailVC.movieId = movieId
+            viewController?.navigationController?.pushViewController(detailVC, animated: true)
+        }
     }
     
 }
+

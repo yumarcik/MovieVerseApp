@@ -16,9 +16,9 @@ protocol SimilarMovieCellProtocol: AnyObject {
 
 class SimilarMovieCell: UICollectionViewCell {
 
-    @IBOutlet weak var posterImg: UIImageView!
-    @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var releaseDateLbl: UILabel!
+    @IBOutlet private weak var posterImg: UIImageView!
+    @IBOutlet private weak var nameLbl: UILabel!
+    @IBOutlet private weak var releaseDateLbl: UILabel!
     
     var cellPresenter: SimilarMovieCellPresenterProtocol! {
         didSet {
@@ -28,9 +28,6 @@ class SimilarMovieCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-//        layer.borderColor = UIColor.blue.cgColor
-//        layer.borderWidth = 1
     }
     
 }
@@ -42,6 +39,8 @@ extension SimilarMovieCell: SimilarMovieCellProtocol {
     }
     
     func setPosterImg(_ imageUrl: String) {
+        posterImg.layer.cornerRadius = 15
+        posterImg.clipsToBounds = true
         let url = URL(string: Constants.posterBaseURL + imageUrl)
         posterImg.kf.setImage(with: url)
     }

@@ -5,9 +5,6 @@
 //  Created by Yağmur Polat on 1.05.2022.
 //
 
-// https://api.themoviedb.org/3/discover/movie?api_key=e00ed4b6b619adca474c02f8465e2e23&page=2
-// https://api.themoviedb.org/3/movie/580489?api_key=e00ed4b6b619adca474c02f8465e2e23
-
 import Foundation
 import Alamofire
 
@@ -19,6 +16,7 @@ enum Router: URLRequestConvertible {
     case upcomingMovies(page: Int)
     case details(movieId: Int)
     case getSimilarMovies(movieId: Int)
+    case getSearchedMovies(searchedText: String)
     
     var baseURL : URL {
         return URL(string: "https://api.themoviedb.org/3/")!
@@ -26,7 +24,7 @@ enum Router: URLRequestConvertible {
     
     var method: HTTPMethod {
         switch self {
-        case .nowPlayingMovies, .upcomingMovies, .details, .getSimilarMovies:
+        case .nowPlayingMovies, .upcomingMovies, .details, .getSimilarMovies, .getSearchedMovies:
             return .get
         }
     }
@@ -38,6 +36,8 @@ enum Router: URLRequestConvertible {
             params["page"] = page
         case .upcomingMovies(page: let page):
             params["page"] = page
+        case .getSearchedMovies(searchedText: let text):
+            params["query"] = text
         case .details, .getSimilarMovies:
             break
             //params["movieId"] = movieId
@@ -61,13 +61,15 @@ enum Router: URLRequestConvertible {
             return "movie"
         case .getSimilarMovies:
             return "movie"
+        case .getSearchedMovies:
+            return "search/movie"
         }
     }
     var route: String {
         
         switch self {
             
-        case .nowPlayingMovies, .upcomingMovies:
+        case .nowPlayingMovies, .upcomingMovies, .getSearchedMovies:
             return ""
         case .details(let movieId):
             return "\(movieId)"
@@ -77,8 +79,6 @@ enum Router: URLRequestConvertible {
     }
         func asURLRequest() throws -> URLRequest {
             var urlRequest = URLRequest(url: baseURL.appendingPathComponent(path).appendingPathComponent(route))
-            print(route)
-            print(urlRequest)
             urlRequest.httpMethod = method.rawValue
             
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
