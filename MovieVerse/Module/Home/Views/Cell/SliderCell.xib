@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SliderCell" id="gTV-IL-0wX" customClass="SliderCell" customModule="MovieVerse" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="324" height="190"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="324" height="190"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="247" verticalHuggingPriority="247" horizontalCompressionResistancePriority="746" verticalCompressionResistancePriority="746" translatesAutoresizingMaskIntoConstraints="NO" id="pbE-EU-axf">
+                        <rect key="frame" x="0.0" y="0.0" width="324" height="190"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPd-XR-VQL">
+                        <rect key="frame" x="5" y="133.5" width="319" height="26.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="22"/>
+                        <color key="textColor" systemColor="systemBackgroundColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="gPd-XR-VQL" secondAttribute="trailing" id="2g8-TG-1bF"/>
+                <constraint firstAttribute="bottom" secondItem="pbE-EU-axf" secondAttribute="bottom" id="Bqf-Hl-neK"/>
+                <constraint firstItem="pbE-EU-axf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="CjA-W7-74e"/>
+                <constraint firstAttribute="trailing" secondItem="pbE-EU-axf" secondAttribute="trailing" id="EA8-vz-lmb"/>
+                <constraint firstItem="gPd-XR-VQL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="MOg-Ha-4fC"/>
+                <constraint firstAttribute="bottom" secondItem="gPd-XR-VQL" secondAttribute="bottom" constant="30" id="e6r-hw-Zs0"/>
+                <constraint firstItem="pbE-EU-axf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="p8C-K4-SG8"/>
+            </constraints>
+            <size key="customSize" width="324" height="190"/>
+            <connections>
+                <outlet property="nameLbl" destination="gPd-XR-VQL" id="jIY-Gp-wbr"/>
+                <outlet property="sliderImg" destination="pbE-EU-axf" id="xug-ya-Miq"/>
+            </connections>
+            <point key="canvasLocation" x="336.23188405797106" y="148.66071428571428"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

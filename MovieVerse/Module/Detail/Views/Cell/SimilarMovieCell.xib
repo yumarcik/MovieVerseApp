@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SimilarMovieCell" id="gTV-IL-0wX" customClass="SimilarMovieCell" customModule="MovieVerse" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="270"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="150" height="270"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kzo-dk-c82">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="GcS-16-0W1"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VT9-l2-wUU">
+                        <rect key="frame" x="0.0" y="100" width="140" height="13.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Izi-py-AE7">
+                        <rect key="frame" x="0.0" y="118.5" width="67.5" height="13.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="Izi-py-AE7" firstAttribute="top" secondItem="VT9-l2-wUU" secondAttribute="bottom" constant="5" id="5Hd-Xj-4Zj"/>
+                <constraint firstAttribute="trailing" secondItem="Kzo-dk-c82" secondAttribute="trailing" id="Hgm-Ai-24G"/>
+                <constraint firstItem="Kzo-dk-c82" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="JJ7-Pu-14b"/>
+                <constraint firstItem="Kzo-dk-c82" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="fss-gc-750"/>
+                <constraint firstItem="VT9-l2-wUU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hAM-n3-MOB"/>
+                <constraint firstItem="VT9-l2-wUU" firstAttribute="top" secondItem="Kzo-dk-c82" secondAttribute="bottom" id="kbg-xt-pu3"/>
+                <constraint firstItem="Izi-py-AE7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lL7-ei-Nv6"/>
+                <constraint firstAttribute="trailing" secondItem="VT9-l2-wUU" secondAttribute="trailing" constant="10" id="pke-uC-atV"/>
+            </constraints>
+            <size key="customSize" width="201" height="270"/>
+            <connections>
+                <outlet property="nameLbl" destination="VT9-l2-wUU" id="gPa-7u-00a"/>
+                <outlet property="posterImg" destination="Kzo-dk-c82" id="dqQ-EI-xbq"/>
+                <outlet property="releaseDateLbl" destination="Izi-py-AE7" id="7dh-SQ-pxa"/>
+            </connections>
+            <point key="canvasLocation" x="240.57971014492756" y="159.375"/>
+        </collectionViewCell>
+    </objects>
+</document>
